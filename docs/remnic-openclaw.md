@@ -18,6 +18,21 @@ Recommended token shape:
 - Repository access: `joshuaswarren/remnic` only
 - Permissions: Issues read/write, Metadata read
 
+GitHub does not expose a REST or CLI endpoint that can mint a fine-grained PAT
+from another token. Create it in the browser using this prefilled URL:
+
+```text
+https://github.com/settings/personal-access-tokens/new?name=release-agent-sentinel-remnic-issues&description=Issue%20read%2Fwrite%20token%20for%20release-agent-sentinel%20to%20open%20Remnic%20compatibility%20review%20issues&target_name=joshuaswarren&expires_in=90&issues=write&metadata=read
+```
+
+After GitHub shows the token, add it to this repository:
+
+```bash
+printf '%s' '<paste-token-here>' | gh secret set REMNIC_ISSUES_TOKEN \
+  --repo joshuaswarren/release-agent-sentinel \
+  --app actions
+```
+
 The tool checks for duplicate issues before creating a new one by reading
 existing issues in the target repository and looking for the hidden sentinel
 marker in the issue body. GitHub issue search is used only as a fallback.
