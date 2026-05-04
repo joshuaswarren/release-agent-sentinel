@@ -72,3 +72,17 @@ export async function createIssue(
     }),
   });
 }
+
+export async function createIssueComment(
+  target: GitHubTargetConfig,
+  issueNumber: number,
+  body: string,
+): Promise<{ html_url: string }> {
+  return githubFetch<{ html_url: string }>(`/repos/${target.owner}/${target.repo}/issues/${issueNumber}/comments`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ body }),
+  });
+}

@@ -45,6 +45,7 @@ export interface SentinelConfig {
     title?: string;
     bodyIntro?: string;
     agentPrompt?: string;
+    postAgentPromptComment?: boolean;
   };
   watchers: WatcherConfig[];
 }
@@ -69,4 +70,5 @@ export interface IssueDraft {
   title: string;
   body: string;
   labels: string[];
+  triggerComment?: string;
 }

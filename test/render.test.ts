@@ -13,6 +13,7 @@ const config: SentinelConfig = {
   defaults: {
     agentMention: "@codex",
     labels: ["compatibility"],
+    postAgentPromptComment: true,
   },
   watchers: [],
 };
@@ -45,6 +46,7 @@ test("renderIssue includes stable dedupe marker and unique labels", () => {
   assert.match(draft.body, /<!-- release-agent-sentinel:/);
   assert.match(draft.body, /release-agent-sentinel:upstream:1\.2\.3-beta\.1/);
   assert.match(draft.body, /@codex Review Upstream 1\.2\.3-beta\.1/);
+  assert.match(draft.triggerComment ?? "", /@codex Review Upstream 1\.2\.3-beta\.1/);
 });
 
 test("interpolate leaves unknown placeholders empty", () => {

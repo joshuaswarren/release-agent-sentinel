@@ -14,6 +14,7 @@ Release Agent Sentinel turns that into a repeatable issue:
 2. Dedupe by a hidden issue marker.
 3. Open a downstream GitHub issue.
 4. Seed the issue with a focused AI-agent prompt.
+5. Optionally post the same prompt as a separate issue comment, which is useful for agent integrations that listen to comments more reliably than issue bodies.
 
 ## Quick Start
 

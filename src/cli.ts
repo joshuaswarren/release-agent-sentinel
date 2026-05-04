@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { loadConfig } from "./config.js";
-import { findExistingIssue, createIssue } from "./github.js";
+import { findExistingIssue, createIssue, createIssueComment } from "./github.js";
 import { renderIssue } from "./render.js";
 import { loadCandidates } from "./sources.js";
 
@@ -72,6 +72,10 @@ async function run(): Promise<void> {
       const issue = await createIssue(config.target.github, draft);
       created += 1;
       console.log(`Created issue: #${issue.number} ${issue.html_url}`);
+      if (draft.triggerComment) {
+        const comment = await createIssueComment(config.target.github, issue.number, draft.triggerComment);
+        console.log(`Created trigger comment: ${comment.html_url}`);
+      }
     }
   }
 

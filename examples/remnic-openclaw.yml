@@ -5,6 +5,7 @@ target:
 
 defaults:
   agentMention: "@codex"
+  postAgentPromptComment: true
   labels:
     - upstream-compatibility
     - agent-review

@@ -101,7 +101,13 @@ export function renderIssue(
     `- Marker: \`${marker}\``,
   ].filter((line): line is string => line !== undefined).join("\n");
 
-  return { marker, title, body, labels };
+  return {
+    marker,
+    title,
+    body,
+    labels,
+    triggerComment: config.defaults?.postAgentPromptComment === true ? prompt : undefined,
+  };
 }
 
 export const testExports = {

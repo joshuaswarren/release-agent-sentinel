@@ -27,6 +27,14 @@ function optionalStringArray(value: unknown, pathName: string): string[] | undef
   return assertStringArray(value, pathName);
 }
 
+function optionalBoolean(value: unknown, pathName: string): boolean | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value !== "boolean") {
+    throw new Error(`${pathName} must be a boolean`);
+  }
+  return value;
+}
+
 function validateWatcher(raw: unknown, index: number): WatcherConfig {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
     throw new Error(`watchers[${index}] must be an object`);
@@ -115,6 +123,7 @@ export function loadConfig(configPath: string): SentinelConfig {
       title: optionalString(defaults.title, "defaults.title"),
       bodyIntro: optionalString(defaults.bodyIntro, "defaults.bodyIntro"),
       agentPrompt: optionalString(defaults.agentPrompt, "defaults.agentPrompt"),
+      postAgentPromptComment: optionalBoolean(defaults.postAgentPromptComment, "defaults.postAgentPromptComment"),
     } : undefined,
     watchers,
   };
