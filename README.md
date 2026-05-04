@@ -40,7 +40,7 @@ on:
     - cron: "17,47 * * * *"
 ```
 
-If the target repository is different from the repository running the workflow, use a fine-grained token or GitHub App token with permission to create issues in the target repository. Store it as `REMNIC_ISSUES_TOKEN`.
+Because this repository opens issues in `joshuaswarren/remnic`, add a repository secret named `REMNIC_ISSUES_TOKEN` with permission to create issues in that repo. A fine-grained personal access token scoped only to `joshuaswarren/remnic` issues is enough. A GitHub App installation token is better for shared/organization use.
 
 ## Configuration
 
