@@ -5,6 +5,7 @@ export interface GitHubIssue {
   html_url: string;
   title: string;
   state: string;
+  body?: string | null;
 }
 
 function githubApiBase(): string {
@@ -41,6 +42,15 @@ export async function findExistingIssue(
   target: GitHubTargetConfig,
   marker: string,
 ): Promise<GitHubIssue | undefined> {
+  for (let page = 1; page <= 10; page += 1) {
+    const issues = await githubFetch<GitHubIssue[]>(
+      `/repos/${target.owner}/${target.repo}/issues?state=all&per_page=100&page=${page}`,
+    );
+    const match = issues.find((issue) => issue.body?.includes(marker));
+    if (match) return match;
+    if (issues.length < 100) break;
+  }
+
   const query = encodeURIComponent(`repo:${target.owner}/${target.repo} is:issue "${marker}"`);
   const result = await githubFetch<{ items: GitHubIssue[] }>(`/search/issues?q=${query}`);
   return result.items[0];

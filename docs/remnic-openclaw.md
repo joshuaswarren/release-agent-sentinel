@@ -18,6 +18,10 @@ Recommended token shape:
 - Repository access: `joshuaswarren/remnic` only
 - Permissions: Issues read/write, Metadata read
 
+The tool checks for duplicate issues before creating a new one by reading
+existing issues in the target repository and looking for the hidden sentinel
+marker in the issue body. GitHub issue search is used only as a fallback.
+
 For long-lived/shared deployments, prefer a small GitHub App installed on the target repository with issue-write permission.
 
 ## Manual Test
