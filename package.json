@@ -1,0 +1,40 @@
+{
+  "name": "release-agent-sentinel",
+  "version": "0.1.0",
+  "description": "Watch upstream releases and open downstream compatibility-review issues for AI coding agents.",
+  "type": "module",
+  "bin": {
+    "release-agent-sentinel": "./dist/src/cli.js"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/**/*.test.js",
+    "dry-run:remnic-openclaw": "npm run build && node dist/src/cli.js run --config examples/remnic-openclaw.yml --dry-run"
+  },
+  "keywords": [
+    "github",
+    "release-monitoring",
+    "ai-agents",
+    "codex",
+    "compatibility"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.5",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
+}

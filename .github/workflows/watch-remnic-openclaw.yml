@@ -1,0 +1,29 @@
+name: Watch Remnic/OpenClaw compatibility
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: release-agent-sentinel-remnic-openclaw
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node dist/src/cli.js run --config examples/remnic-openclaw.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.REMNIC_ISSUES_TOKEN }}

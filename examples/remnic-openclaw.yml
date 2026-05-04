@@ -1,0 +1,57 @@
+target:
+  github:
+    owner: joshuaswarren
+    repo: remnic
+
+defaults:
+  agentMention: "@codex"
+  labels:
+    - upstream-compatibility
+    - agent-review
+  title: "Review {sourceName} {version} for Remnic compatibility"
+  bodyIntro: "Release Agent Sentinel detected a new OpenClaw release that may require Remnic compatibility work."
+  agentPrompt: |
+    {agentMention} Review {sourceName} {version} for Remnic compatibility.
+
+    Compare this upstream release against the current Remnic OpenClaw adapter.
+    Focus on plugin download/install behavior, ClawHub resolution, openclaw.plugin.json schema,
+    setup.providers / auth metadata, hooks, memory slot behavior, gateway LLM configuration,
+    plugin security scanning, and breaking changes in OpenClaw plugin SDK docs.
+
+    If Remnic needs changes, open a PR with the minimal fix and verification. If no code
+    changes are needed, comment with evidence and close this issue.
+
+watchers:
+  - id: openclaw-github-releases
+    type: github-releases-atom
+    sourceName: OpenClaw
+    feedUrl: https://github.com/openclaw/openclaw/releases.atom
+    upstreamRepo: openclaw/openclaw
+    includePrereleases: true
+    maxEntries: 1
+    dedupeKey: "openclaw:{version}"
+    labels:
+      - openclaw
+
+  - id: openclaw-npm-latest
+    type: npm-dist-tag
+    sourceName: OpenClaw npm latest
+    packageName: openclaw
+    distTags:
+      - latest
+    dedupeKey: "openclaw:{version}"
+    labels:
+      - openclaw
+      - npm
+
+  - id: openclaw-npm-beta
+    type: npm-dist-tag
+    sourceName: OpenClaw npm beta
+    packageName: openclaw
+    distTags:
+      - beta
+    dedupeKey: "openclaw:{version}"
+    labels:
+      - openclaw
+      - npm
+      - beta
