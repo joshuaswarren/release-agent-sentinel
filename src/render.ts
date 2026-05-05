@@ -51,7 +51,7 @@ export function renderIssue(
   const defaultIntro =
     "Release Agent Sentinel detected a new upstream release that may require downstream compatibility work.";
   const defaultPrompt =
-    "{agentMention} Review {sourceName} {version} for downstream compatibility. If changes are needed, open a PR. If no changes are needed, comment with evidence and close this issue.";
+    "{agentMention} Review {sourceName} {version} for downstream compatibility. If changes are needed, create the GitHub PR and comment with the exact PR URL and PR number. Do not say \"Created PR\" unless GitHub shows an actual PR URL/number. If the Codex UI requires a human to click \"Create PR\", say the PR draft is ready in Codex cloud and leave this issue open. If no changes are needed, comment with evidence and close this issue.";
   const agentMention = config.defaults?.agentMention ?? "@codex";
 
   const templateValuesCandidate = { ...candidate };

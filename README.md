@@ -64,8 +64,13 @@ Focus on plugin download/install behavior, ClawHub resolution, openclaw.plugin.j
 setup.providers / auth metadata, hooks, memory slot behavior, gateway LLM configuration,
 plugin security scanning, and breaking changes in OpenClaw plugin SDK docs.
 
-If Remnic needs changes, open a PR with the minimal fix and verification. If no code
-changes are needed, comment with evidence and close this issue.
+If Remnic needs changes, prepare the minimal fix and create the GitHub pull request
+from the Codex cloud task. After a GitHub pull request exists, comment here with the
+exact PR URL and PR number. Do not say "Created PR" unless GitHub shows an actual PR
+URL/number. If the Codex UI requires a human to click "Create PR", say "PR draft is
+ready in Codex cloud; GitHub PR has not been created yet" and leave this issue open.
+
+If no code changes are needed, comment with evidence and close this issue.
 ```
 
 ## Notes
@@ -73,6 +78,7 @@ changes are needed, comment with evidence and close this issue.
 - This is polling, not a true upstream webhook. That avoids needing upstream maintainer cooperation.
 - Polling does not use AI tokens.
 - The agent handoff happens in the issue body through your GitHub-connected agent, such as Codex cloud.
+- For Codex cloud tasks, require an exact GitHub PR URL/number before treating a task as having created a PR.
 
 ## License
 

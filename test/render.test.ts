@@ -49,6 +49,14 @@ test("renderIssue includes stable dedupe marker and unique labels", () => {
   assert.match(draft.triggerComment ?? "", /@codex Review Upstream 1\.2\.3-beta\.1/);
 });
 
+test("default agent prompt requires a verifiable pull request", () => {
+  const draft = renderIssue(config, { ...watcher, agentPrompt: undefined }, candidate);
+
+  assert.match(draft.body, /exact PR URL and PR number/);
+  assert.match(draft.body, /Do not say "Created PR"/);
+  assert.match(draft.body, /PR draft is ready in Codex cloud/);
+});
+
 test("interpolate leaves unknown placeholders empty", () => {
   assert.equal(
     testExports.interpolate("{sourceName}:{version}:{missing}", candidate, "marker"),
