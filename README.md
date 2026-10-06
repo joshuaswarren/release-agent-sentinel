@@ -1,5 +1,7 @@
 # Release Agent Sentinel
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/joshuaswarren)
+
 Release Agent Sentinel watches upstream releases and opens downstream compatibility-review issues for AI coding agents.
 
 It is intentionally small: detection is cheap polling, and the expensive AI work starts only after an issue is opened with an agent prompt such as `@codex`.
@@ -79,6 +81,14 @@ If no code changes are needed, comment with evidence and close this issue.
 - Polling does not use AI tokens.
 - The agent handoff happens in the issue body through your GitHub-connected agent, such as Codex cloud.
 - For Codex cloud tasks, require an exact GitHub PR URL/number before treating a task as having created a PR.
+
+## Support
+
+Every bit of support helps keep release-agent-sentinel alive and free. If you are able, [sponsor on GitHub](https://github.com/sponsors/joshuaswarren) or send a Lightning donation to `joshuaswarren@strike.me` to directly fund continued development and new integrations.
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?style=for-the-badge)](https://github.com/sponsors/joshuaswarren)
+
+If financial support is not an option, you can still make a big difference: [star the repo](https://github.com/joshuaswarren/release-agent-sentinel), share it, or recommend it to a colleague. Word of mouth is how most people find release-agent-sentinel.
 
 ## License
 
